@@ -8,7 +8,11 @@ function f:OnEvent(event, ...)
         end
 
         local duration = UnitCastingDuration(unit)
-        f.bar:SetTimerDuration(duration)
+        -- Enum.StatusBarTimerDirection.RemainingTime correctly anchors the texture to the top and gives us the
+        -- "reveal" behavior we want out of the texture. Enum.StatusBarTimerDirection.ElapsedTime will not
+        -- behave as desired if SetReverseFill or SetFillStyle are changed from their defaults.
+        -- this only works for 12.x, however, and not Classic, for now.
+        f.bar:SetTimerDuration(duration, Enum.StatusBarInterpolation.Immediate, Enum.StatusBarTimerDirection.RemainingTime)
     end
 end
 
@@ -24,7 +28,9 @@ bar:SetMinMaxValues(0, 1)
 bar:SetValue(0)
 bar:SetOrientation("VERTICAL")
 bar:SetStatusBarTexture("Interface\\AddOns\\ReverseStatusBarBug\\bar")
--- uncomment this to see the bar texture filled in an unexpected way
+-- either of these methods cause the texture to "slide in" rather than "reveal" as the bottom of the texture is always the
+-- coordinate anchor point rather than being relative to the direction of the fill.
 -- bar:SetReverseFill(true)
+-- bar:SetFillStyle(Enum.StatusBarFillStyle.Center)
 
 f.bar = bar
