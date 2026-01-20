@@ -11,8 +11,8 @@ function f:OnEvent(event, ...)
         -- Enum.StatusBarTimerDirection.RemainingTime correctly anchors the texture to the top and gives us the
         -- "reveal" behavior we want out of the texture. Enum.StatusBarTimerDirection.ElapsedTime will not
         -- behave as desired if SetReverseFill or SetFillStyle are changed from their defaults.
-        -- this only works for 12.x, however, and not Classic, for now.
-        f.bar:SetTimerDuration(duration, Enum.StatusBarInterpolation.Immediate, Enum.StatusBarTimerDirection.RemainingTime)
+        -- this SetTimerDuration with RemainingTime workaround only works for 12.x, however, and not Classic, for now.
+        f.bar:SetTimerDuration(duration, Enum.StatusBarInterpolation.Immediate, Enum.StatusBarTimerDirection.ElapsedTime)
     end
 end
 
