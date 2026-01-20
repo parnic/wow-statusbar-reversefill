@@ -30,7 +30,7 @@ bar:SetOrientation("VERTICAL")
 bar:SetStatusBarTexture("Interface\\AddOns\\ReverseStatusBarBug\\bar")
 -- either of these methods cause the texture to "slide in" rather than "reveal" as the bottom of the texture is always the
 -- coordinate anchor point rather than being relative to the direction of the fill.
--- bar:SetReverseFill(true)
+bar:SetReverseFill(true)
 -- bar:SetFillStyle(Enum.StatusBarFillStyle.Center)
 
 f.bar = bar
